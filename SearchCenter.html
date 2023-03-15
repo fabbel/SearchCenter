@@ -1,2 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Center</title>
+  </head>
+  <body>
+    <h1>Search Center</h1>
+    <form>
+      <label for="query">Enter your search query:</label>
+      <input type="text" name="query" id="query">
+      <br>
+      <br>
+      <button type="button" onclick="search()">Search</button>
+    </form>
+    <br>
+    <h2>Search Engines</h2>
+    <ul>
+      <li><a href="https://www.google.com/search?q={query}" target="_blank">Google</a></li>
+      <li><a href="https://www.bing.com/search?q={query}" target="_blank">Bing</a></li>
+      <li><a href="https://duckduckgo.com/?q={query}" target="_blank">DuckDuckGo</a></li>
+      <li><a href="https://twitter.com/search?q={query}" target="_blank">Twitter</a></li>
+    </ul>
+    <script>
+      function search() {
+        var query = document.getElementById("query").value;
+        var searchLinks = document.querySelectorAll("ul li a");
+        for (var i = 0; i < searchLinks.length; i++) {
+          var searchLink = searchLinks[i].href.replace("{query}", query);
+          window.open(searchLink, "_blank");
+        }
+      }
+    </script>
+  </body>
+</html>
 
-
