@@ -1,0 +1,43 @@
+async function searchStocks(ticker) {
+      const results = [];
+
+        for (const page of pages) {
+                try {
+                          const response = await fetch(page.url + ticker);
+                                if (!response.ok) {
+                                            throw new Error("Network error");
+                                }
+
+                                      const html = await response.text();
+                                            const parser = new DOMParser();
+                                                  const doc = parser.parseFromString(html, "text/html");
+                                                        const elements = doc.querySelectorAll(page.selector);
+
+                                                              // Filter the elements to find those that contain the stock ticker
+                                                                    const filtered = Array.from(elements).filter(el => el.textContent.includes(ticker));
+
+                                                                          // Add the results to the results array
+                                                                                results.push(...filtered);
+                } catch (error) {
+                          console.error(error);
+                                if (error.message === "Network error") {
+                                            // Display a network error message
+                                                    alert("Network error. Please check your internet connection and try again.");
+                                                            return [];
+                                } else {
+                                            // Display a warning message and exclude the page from the search results
+                                                    alert(`Warning: An error occurred when searching ${page.url}. Please check the page structure and try again.`);
+                                }
+                }
+        }
+
+          return results;
+}
+
+                                }
+                                }
+                }
+                                }
+                }
+        }
+}

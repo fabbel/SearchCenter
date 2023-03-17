@@ -1,0 +1,71 @@
+const pages = [
+      { url: "https://finance.yahoo.com/quote/", selector: ".Bdstartc td" },
+        { url: "https://www.marketwatch.com/investing/stock/", selector: ".table__row" },
+          { url: "https://www.bloomberg.com/quote/", selector: ".value__186e8__3DVSS" }
+];
+
+function searchStocks(ticker) {
+      const results = [];
+
+        for (const page of pages) {
+                fetch(page.url + ticker)
+                      .then(response => response.text())
+                            .then(html => {
+                                        const parser = new DOMParser();
+                                                const doc = parser.parseFromString(html, "text/html");
+                                                        const elements = doc.querySelectorAll(page.selector);
+                                                                
+                                                                        // Filter the elements to find those that contain the stock ticker
+                                                                                const filtered = Array.from(elements).filter(el => el.textContent.includes(ticker));
+                                                                                        
+                                                                                                // Add the results to the results array
+                                                                                                        results.push(...filtered);
+                            })
+                                  .catch(error => console.error(error));
+        }
+
+          return results;
+}
+
+const input = document.createElement("input");
+const button = document.createElement("button");
+button.textContent = "Search";
+
+button.addEventListener("click", () => {
+      const ticker = input.value.toUpperCase();
+        const results = searchStocks(ticker);
+          const container = document.getElementById("results");
+            container.innerHTML = "";
+
+              // Display the results in a table
+                const table = document.createElement("table");
+                  const header = table.createTHead();
+                    const row = header.insertRow();
+                      const header1 = row.insertCell();
+                        const header2 = row.insertCell();
+                          header1.textContent = "Website";
+                            header2.textContent = "Result";
+
+                              for (const result of results) {
+                                    const row = table.insertRow();
+                                        const website = row.insertCell();
+                                            const data = row.insertCell();
+                                                website.textContent = result.closest("body").baseURI;
+                                                    data.textContent = result.textContent.trim();
+                              }
+
+                                container.appendChild(table);
+});
+
+document.body.appendChild(input);
+document.body.appendChild(button);
+const container = document.createElement("div");
+container.id = "results";
+document.body.appendChild(container);
+
+                              }
+})
+                            })
+        }
+}
+]
