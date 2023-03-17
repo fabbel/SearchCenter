@@ -1,0 +1,5 @@
+Alpha Vantage (https://www.alphavantage.co/): Alpha Vantage provides free stock and forex data through a REST API. You can retrieve stock ticker and company name data by calling the SYMBOL_SEARCH API endpoint.
+
+Yahoo Finance (https://finance.yahoo.com/): Yahoo Finance offers a free API that provides stock and forex data. You can retrieve stock ticker and company name data by calling the search API endpoint.
+
+IEX Cloud (https://iexcloud.io/): IEX Cloud provides a free plan that includes access to stock and forex data through a REST API. You can retrieve stock ticker and company name data by calling the search API endpoint.
