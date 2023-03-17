@@ -1,0 +1,25 @@
+function handleSearch(event) {
+      event.preventDefault();
+        const input = document.getElementById('ticker-input');
+          const searchTerm = input.value.toUpperCase();
+            const results = searchPages(searchTerm);
+
+              // Display search results
+                const resultList = document.getElementById('result-list');
+                  resultList.innerHTML = '';
+                    results.forEach(result => {
+                            const li = document.createElement('li');
+                                const link = document.createElement('a');
+                                    link.href = result.url;
+                                        link.target = '_blank'; // Open in new tab
+                                            link.innerText = result.title;
+                                                li.appendChild(link);
+                                                    resultList.appendChild(li);
+                    });
+
+                      // Store last search results
+                        browser.storage.local.set({lastSearchResults: results});
+}
+
+                    })
+}
