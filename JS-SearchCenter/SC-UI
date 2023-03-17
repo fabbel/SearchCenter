@@ -1,0 +1,14 @@
+const input = document.createElement("input");
+const button = document.createElement("button");
+button.textContent = "Search";
+
+button.addEventListener("click", () => {
+      const ticker = input.value;
+        const results = searchStocks(ticker);
+          // Do something with the results, such as displaying them in a table
+});
+
+document.body.appendChild(input);
+document.body.appendChild(button);
+
+})

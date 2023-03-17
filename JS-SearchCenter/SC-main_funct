@@ -1,0 +1,26 @@
+function searchStocks(ticker) {
+      const results = [];
+
+        for (const page of pages) {
+                fetch(page.url)
+                      .then(response => response.text())
+                            .then(html => {
+                                        const parser = new DOMParser();
+                                                const doc = parser.parseFromString(html, "text/html");
+                                                        const elements = doc.querySelectorAll(page.selector);
+                                                                
+                                                                        // Filter the elements to find those that contain the stock ticker
+                                                                                const filtered = Array.from(elements).filter(el => el.textContent.includes(ticker));
+                                                                                        
+                                                                                                // Add the results to the results array
+                                                                                                        results.push(...filtered);
+                            })
+                                  .catch(error => console.error(error));
+        }
+
+          return results;
+}
+
+                            })
+        }
+}
