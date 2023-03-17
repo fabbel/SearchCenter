@@ -1,0 +1,49 @@
+<!-- HTML code for the search form -->
+<form>
+  <label for="ticker">Stock ticker:</label>
+    <input type="text" id="ticker" name="ticker" required>
+
+      <label for="urls">Web pages:</label>
+        <ul id="urls">
+            <li><input type="text" name="url[]" required> <button type="button" class="remove-url">-</button></li>
+              </ul>
+                <button type="button" id="add-url">Add URL</button>
+
+                  <button type="submit">Search</button>
+                  </form>
+
+                  <!-- JavaScript code for adding and removing URLs -->
+                  <script>
+                    const addUrlButton = document.getElementById('add-url');
+                      const urlsList = document.getElementById('urls');
+                        
+                          function addUrl() {
+                                const li = document.createElement('li');
+                                    const input = document.createElement('input');
+                                        input.type = 'text';
+                                            input.name = 'url[]';
+                                                input.required = true;
+                                                    li.appendChild(input);
+
+                                                        const removeButton = document.createElement('button');
+                                                            removeButton.type = 'button';
+                                                                removeButton.classList.add('remove-url');
+                                                                    removeButton.textContent = '-';
+                                                                        li.appendChild(removeButton);
+
+                                                                            urlsList.appendChild(li);
+                          }
+
+                            function removeUrl(event) {
+                                    if (event.target.classList.contains('remove-url')) {
+                                              event.target.parentNode.remove();
+                                    }
+                            }
+
+                              addUrlButton.addEventListener('click', addUrl);
+                                urlsList.addEventListener('click', removeUrl);
+                                </script>
+                                
+                                    }
+                            }
+                          }
