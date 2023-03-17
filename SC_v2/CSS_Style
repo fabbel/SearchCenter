@@ -1,0 +1,23 @@
+.search-container {
+      display: flex;
+        align-items: center;
+          gap: 1em;
+            margin-bottom: 1em;
+}
+
+#results-container {
+      margin-top: 1em;
+}
+
+.result {
+      margin-bottom: 1em;
+}
+
+.result a {
+      font-weight: bold;
+}
+
+}
+}
+}
+}

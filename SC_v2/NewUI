@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Stock Ticker Search</title>
+          <link rel="stylesheet" href="style.css">
+            </head>
+              <body>
+                  <div class="search-container">
+                        <label for="ticker-input">Enter a stock ticker:</label>
+                              <input type="text" id="ticker-input" list="ticker-list">
+                                    <datalist id="ticker-list"></datalist>
+                                          <button id="search-btn">Search</button>
+                                                <button id="add-url-btn">Add URL</button>
+                                                    </div>
+                                                        <div id="results-container"></div>
+                                                            <script src="popup.js"></script>
+                                                              </body>
+                                                              </html>
+                                                              

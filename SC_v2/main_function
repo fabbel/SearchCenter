@@ -1,0 +1,85 @@
+// Define initial URLs to search
+let urls = [
+      {url: 'https://example.com', title: 'Example Website', content: 'AAPL stock is up today.'},
+        {url: 'https://another-example.com', title: 'Another Example Website', content: 'The stock market is volatile.'}
+];
+
+// Populate ticker list with data from API
+async function populateTickerList() {
+      const response = await fetch('https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=1000&apiKey=YOUR_API_KEY');
+        if (!response.ok) {
+                throw new Error('Failed to fetch ticker data.');
+        }
+          const data = await response.json();
+
+            const datalist = document.getElementById('ticker-list');
+              data.results.forEach(stock => {
+                    const option = document.createElement('option');
+                        option.value = stock.ticker;
+                            option.text = `${stock.ticker} - ${stock.name}`;
+                                datalist.appendChild(option);
+              });
+}
+
+populateTickerList().catch(error => {
+      console.error(error);
+});
+
+// Search pages for ticker symbol
+function searchPages() {
+      const searchTerm = document.getElementById('ticker-input').value.toUpperCase();
+        if (!searchTerm) {
+                throw new Error('Please enter a ticker symbol.');
+        }
+          const results = [];
+
+            urls.forEach(url => {
+                    // Search for ticker symbol on page
+                        const tickerRegex = new RegExp(`\\b${searchTerm}\\b`, 'i');
+                            const match = tickerRegex.exec(url.content);
+                                if (match) {
+                                          results.push({url: url.url, title: url.title, ticker: searchTerm});
+                                }
+            });
+
+              return results;
+}
+
+// Display search results
+function displayResults(results) {
+      const resultsContainer = document.getElementById('results-container');
+        resultsContainer.innerHTML = '';
+
+          if (results.length === 0) {
+                resultsContainer.innerText = 'No results found.';
+                    return;
+          }
+
+            results.forEach(result => {
+                    const resultElement = document.createElement('div');
+                        resultElement.classList.add('result');
+                            const linkElement = document.createElement('a');
+                                linkElement.href = result.url;
+                                    linkElement.innerText = result.title;
+                                        resultElement.appendChild(linkElement);
+                                            const tickerElement = document.createElement('div');
+                                                tickerElement.innerText = `Ticker symbol: ${result.ticker}`;
+                                                    resultElement.appendChild(tickerElement);
+                                                        resultsContainer.appendChild(resultElement);
+            });
+}
+
+// Search for ticker symbol when search button is clicked
+
+            })
+          }
+}
+                                }
+            })
+        }
+}
+})
+              })
+        }
+}
+]
